@@ -15,7 +15,7 @@ function abValueGetter(params: ValueGetterParams) {
 export const DataGridTablePresentation: React.FC<{ rowData: any }> = ({
   rowData,
 }) => {
-  const columns = React.useMemo(() => Object.keys(rowData[0]), [rowData])
+  const columns = React.useMemo(() => Object.keys(rowData[0] || {}), [rowData])
 
   return (
     <div

@@ -1,7 +1,7 @@
 // @todo: Replace with type definitions
 import type data from '../data-sources/customers_G2000.json'
 
-import { groupBy, zipObject } from 'lodash'
+import { map, groupBy, zipObject } from 'lodash'
 
 export const sumVerticalMatrix = (matrix: number[][]) =>
   matrix.reduce((array1, array2) =>
@@ -12,7 +12,10 @@ export const extractColumns = (
   input: typeof data,
   groupByKey: string
 ): string[] => {
-  const dates = input[0].details.map((detail) => detail.date)
+  if (!input.length) {
+    return [groupByKey]
+  }
+  const dates = map(input[0].details, 'date')
   return [groupByKey, ...dates]
 }
 
@@ -23,9 +26,9 @@ export const extractRows = (
   const groups = groupBy(input, groupByKey)
 
   return Object.entries(groups).map(([groupName, accounts]) => {
-    const verticalMatrix = accounts.map((account) => [
-      ...account.details.map((detail) => detail.ARR),
-    ])
+    const verticalMatrix = map(accounts, (account) =>
+      map(account.details, 'ARR')
+    )
 
     const values = sumVerticalMatrix(verticalMatrix)
 
