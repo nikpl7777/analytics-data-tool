@@ -11,10 +11,10 @@ export const Dashboard: React.FC<{ filters: React.ReactElement }> = ({
     <Box marginX="auto" marginY={5}>
       <Container maxWidth="xl">
         <Grid container>
-          <Grid item xs={12} md={9} lg={10}>
+          <Grid item xs={12} md={8} lg={9}>
             {children}
           </Grid>
-          <Grid item xs={12} md={3} lg={2}>
+          <Grid item xs={12} md={4} lg={3}>
             {filters}
           </Grid>
         </Grid>

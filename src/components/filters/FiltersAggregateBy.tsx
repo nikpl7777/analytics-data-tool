@@ -26,7 +26,9 @@ export const FiltersAggregateBy: React.FC = () => {
         onChange={handleChange}
       >
         {Object.values(FilterGroupBy).map((item) => (
-          <MenuItem value={item}>{item}</MenuItem>
+          <MenuItem value={item} key={item}>
+            {item}
+          </MenuItem>
         ))}
       </Select>
     </FormControl>
