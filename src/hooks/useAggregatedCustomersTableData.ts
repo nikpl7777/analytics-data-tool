@@ -5,7 +5,7 @@ import type { DataAggregationFields } from '../models/DataAggregationFields'
 import {
   mapMatrixesToAgGridCollection,
   aggregateCollectionToMatrixes,
-} from '../utils/data-processing'
+} from '../utils/data-aggregation'
 
 export const useAggregatedCustomersTableData = (
   data: CustomerDataSourceItemUnifiedCurrency[],
