@@ -6,6 +6,7 @@ import { useCreateCustomerDataSourceContext } from '../context/CustomerDataSourc
 import {useGetCustomerData} from '../hooks/useGetCustomerData'
 import { Dashboard } from '../components/dashboard/Dashboard'
 import { Filters } from '../components/filters/Filters'
+import { ExchangeRates } from '../components/ExhangeRates/ExchangeRates'
 
 export const DashboardContainer: React.FC = ({ children }) => {
   const customerData = useGetCustomerData()
@@ -15,7 +16,16 @@ export const DashboardContainer: React.FC = ({ children }) => {
   return (
     <CustomerDataSourceContext.Provider value={customerDataSourceContext}>
       <FilterContext.Provider value={filterContext}>
-        <Dashboard filters={<Filters />}>{children}</Dashboard>
+        <Dashboard
+          filters={
+            <>
+              <Filters />
+              <ExchangeRates />
+            </>
+          }
+        >
+          {children}
+        </Dashboard>
       </FilterContext.Provider>
     </CustomerDataSourceContext.Provider>
   )
