@@ -5,7 +5,7 @@ import { useAgCollectionFromData } from '../../hooks/useAgCollectionFromData'
 import { FilterContext } from '../../context/FilterContext/FilterContext'
 
 export const DataGrid: React.FC<{ data: any }> = ({ data }) => {
-  const { groupByKey } = React.useContext(FilterContext)
-  const collection = useAgCollectionFromData(data, groupByKey)
+  const { aggregateByKey } = React.useContext(FilterContext)
+  const collection = useAgCollectionFromData(data, aggregateByKey)
   return <DataGridTablePresentation rowData={collection} />
 }

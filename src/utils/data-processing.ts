@@ -10,20 +10,20 @@ export const sumVerticalMatrix = (matrix: number[][]) =>
 
 export const extractColumns = (
   input: typeof data,
-  groupByKey: string
+  aggregateByKey: string
 ): string[] => {
   if (!input.length) {
-    return [groupByKey]
+    return [aggregateByKey]
   }
   const dates = map(input[0].details, 'date')
-  return [groupByKey, ...dates]
+  return [aggregateByKey, ...dates]
 }
 
 export const extractRows = (
   input: typeof data,
-  groupByKey: string
+  aggregateByKey: string
 ): (string | number)[][] => {
-  const groups = groupBy(input, groupByKey)
+  const groups = groupBy(input, aggregateByKey)
 
   return Object.entries(groups).map(([groupName, accounts]) => {
     const verticalMatrix = map(accounts, (account) =>
@@ -38,10 +38,10 @@ export const extractRows = (
 
 export const aggregateCollectionToMatrixes = (
   input: typeof data,
-  groupByKey: string
+  aggregateByKey: string
 ): [ReturnType<typeof extractColumns>, ReturnType<typeof extractRows>] => [
-  extractColumns(input, groupByKey),
-  extractRows(input, groupByKey),
+  extractColumns(input, aggregateByKey),
+  extractRows(input, aggregateByKey),
 ]
 
 export const mapMatrixesToAgGridCollection = ([columns, rows]: ReturnType<

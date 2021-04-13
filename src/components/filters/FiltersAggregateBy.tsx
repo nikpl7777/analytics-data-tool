@@ -7,13 +7,13 @@ import { FilterContext } from '../../context/FilterContext/FilterContext'
 import { DataAggregationFields } from '../../models/DataAggregationFields'
 
 export const FiltersAggregateBy: React.FC = () => {
-  const { groupByKey, setGroupByKey } = React.useContext(FilterContext)
+  const { aggregateByKey, setAggregateByKey } = React.useContext(FilterContext)
 
   const handleChange = React.useCallback(
     (e: React.ChangeEvent<{ name?: string | undefined; value: unknown }>) => {
-      setGroupByKey(e.target.value as keyof typeof DataAggregationFields)
+      setAggregateByKey(e.target.value as keyof typeof DataAggregationFields)
     },
-    [setGroupByKey]
+    [setAggregateByKey]
   )
 
   return (
@@ -21,8 +21,8 @@ export const FiltersAggregateBy: React.FC = () => {
       <InputLabel id="aggregate-by-label">Aggregate by:</InputLabel>
       <Select
         labelId="aggregate-by-label"
-        id="demo-simple-select"
-        value={groupByKey}
+        id="aggregate-by-key"
+        value={aggregateByKey}
         onChange={handleChange}
       >
         {Object.values(DataAggregationFields).map((item) => (

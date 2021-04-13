@@ -2,7 +2,7 @@ import React from 'react'
 import { DataAggregationFields } from '../../models/DataAggregationFields'
 
 export const useCreateFilterContext = () => {
-  const [groupByKey, setGroupByKey] = React.useState<
+  const [aggregateByKey, setAggregateByKey] = React.useState<
     keyof typeof DataAggregationFields
   >('Industry')
 
@@ -15,7 +15,7 @@ export const useCreateFilterContext = () => {
   return {
     filter,
     setFilter,
-    groupByKey,
-    setGroupByKey,
+    aggregateByKey,
+    setAggregateByKey,
   }
 }

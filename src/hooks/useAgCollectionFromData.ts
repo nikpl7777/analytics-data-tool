@@ -4,9 +4,9 @@ import {
   aggregateCollectionToMatrixes,
 } from '../utils/data-processing'
 
-export const useAgCollectionFromData = (data: any, groupByKey: string) => {
+export const useAgCollectionFromData = (data: any, aggregateByKey: string) => {
   return React.useMemo(() => {
-    const matrixes = aggregateCollectionToMatrixes(data, groupByKey)
+    const matrixes = aggregateCollectionToMatrixes(data, aggregateByKey)
     return mapMatrixesToAgGridCollection(matrixes)
-  }, [data, groupByKey])
+  }, [data, aggregateByKey])
 }

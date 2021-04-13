@@ -4,8 +4,8 @@ import { useCreateFilterContext } from './useCreateFilterContext'
 export type FilterContextState = ReturnType<typeof useCreateFilterContext>
 
 export const FilterContext = React.createContext<FilterContextState>({
-  groupByKey: 'Industry',
-  setGroupByKey() {
+  aggregateByKey: 'Industry',
+  setAggregateByKey() {
     throw new Error('Setter is called out of context')
   },
   filter: {},

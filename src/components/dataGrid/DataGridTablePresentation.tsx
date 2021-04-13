@@ -1,7 +1,7 @@
 import React from 'react'
 import { AgGridColumn, AgGridReact } from 'ag-grid-react'
 import type { ValueGetterParams } from 'ag-grid-community'
-
+import type { TableDataItem } from '../../types/TableDataItem'
 import 'ag-grid-community/dist/styles/ag-grid.css'
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css'
 
@@ -12,7 +12,7 @@ function abValueGetter(params: ValueGetterParams) {
   return formatCurrency(value)
 }
 
-export const DataGridTablePresentation: React.FC<{ rowData: any }> = ({
+export const DataGridTablePresentation: React.FC<{ rowData: TableDataItem[] }> = ({
   rowData,
 }) => {
   const columns = React.useMemo(() => Object.keys(rowData[0] || {}), [rowData])
