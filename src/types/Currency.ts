@@ -1,1 +1,1 @@
-export type Currency = 'GBP' | 'USD'
+export type Currency = 'GBP' | 'USD' | 'EUR'

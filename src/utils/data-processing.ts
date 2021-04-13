@@ -1,6 +1,5 @@
-// @todo: Replace with type definitions
-import type data from '../data-sources/customers_G2000.json'
-
+import type { CustomerDataSourceItem } from '../types/CustomerDataSourceItem'
+import type { DataAggregationFields } from '../models/DataAggregationFields'
 import { map, groupBy, zipObject } from 'lodash'
 
 export const sumVerticalMatrix = (matrix: number[][]) =>
@@ -9,8 +8,8 @@ export const sumVerticalMatrix = (matrix: number[][]) =>
   )
 
 export const extractColumns = (
-  input: typeof data,
-  aggregateByKey: string
+  input: CustomerDataSourceItem[],
+  aggregateByKey: keyof typeof DataAggregationFields
 ): string[] => {
   if (!input.length) {
     return [aggregateByKey]
@@ -20,8 +19,8 @@ export const extractColumns = (
 }
 
 export const extractRows = (
-  input: typeof data,
-  aggregateByKey: string
+  input: CustomerDataSourceItem[],
+  aggregateByKey: keyof typeof DataAggregationFields
 ): (string | number)[][] => {
   const groups = groupBy(input, aggregateByKey)
 
@@ -37,8 +36,8 @@ export const extractRows = (
 }
 
 export const aggregateCollectionToMatrixes = (
-  input: typeof data,
-  aggregateByKey: string
+  input: CustomerDataSourceItem[],
+  aggregateByKey: keyof typeof DataAggregationFields
 ): [ReturnType<typeof extractColumns>, ReturnType<typeof extractRows>] => [
   extractColumns(input, aggregateByKey),
   extractRows(input, aggregateByKey),

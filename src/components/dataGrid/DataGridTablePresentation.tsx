@@ -5,11 +5,12 @@ import type { TableDataItem } from '../../types/TableDataItem'
 import 'ag-grid-community/dist/styles/ag-grid.css'
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css'
 
+import { UNIFIED_DEFAULT_CURRENCY } from '../../models/UnifiedDefaultCurrency'
 import { formatCurrency } from '../../utils/format-currency'
 
-function abValueGetter(params: ValueGetterParams) {
+function formatCurrencyValueGetter(params: ValueGetterParams) {
   const value = params.data[params.column.getColId()]
-  return formatCurrency(value)
+  return formatCurrency(value, UNIFIED_DEFAULT_CURRENCY)
 }
 
 export const DataGridTablePresentation: React.FC<{ rowData: TableDataItem[] }> = ({
@@ -30,7 +31,7 @@ export const DataGridTablePresentation: React.FC<{ rowData: TableDataItem[] }> =
               <AgGridColumn
                 key={field}
                 field={field}
-                valueGetter={abValueGetter}
+                valueGetter={formatCurrencyValueGetter}
               />
             )
         )}

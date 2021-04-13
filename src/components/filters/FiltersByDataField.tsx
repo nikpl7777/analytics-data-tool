@@ -5,14 +5,14 @@ import MenuItem from '@material-ui/core/MenuItem'
 import InputLabel from '@material-ui/core/InputLabel'
 import { FilterContext } from '../../context/FilterContext/FilterContext'
 import { DataAggregationFields } from '../../models/DataAggregationFields'
-import { useFilterOptionsByField } from '../../hooks/useFilterOptionsByField'
+import { useGetFilterOptionsListByField } from '../../hooks/useGetFilterOptionsListByField'
 import { Box } from '@material-ui/core'
 
 export const FiltersByDataField: React.FC<{
   field: keyof typeof DataAggregationFields
 }> = ({ field }) => {
   const { filter, setFilter } = React.useContext(FilterContext)
-  const options = useFilterOptionsByField(field)
+  const options = useGetFilterOptionsListByField(field)
 
   const handleChange = React.useCallback(
     (e: React.ChangeEvent<{ name?: string | undefined; value: unknown }>) =>

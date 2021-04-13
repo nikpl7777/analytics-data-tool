@@ -1,6 +1,5 @@
+import type { Currency } from '../types/Currency'
 const formatter = Intl.NumberFormat()
-
-export type Currency = 'USD' | 'GBP' | 'EUR'
 
 const currencySymbols: { [key in Currency]: string } = {
   USD: '$',
@@ -8,5 +7,17 @@ const currencySymbols: { [key in Currency]: string } = {
   EUR: '€',
 }
 
-export const formatCurrency = (amount: number, currency?: Currency): string =>
-  `${currency ? currencySymbols[currency] : ''}${formatter.format(amount)}`
+export const formatCurrency = (amount: number, currency?: Currency): string => {
+  const formattedValue = formatter.format(amount)
+  const currenySymbol = currency ? currencySymbols[currency] : ''
+
+  if (currency === 'USD') {
+    return `${currenySymbol}${formattedValue}`
+  }
+
+  if (!currency) {
+    return formattedValue
+  }
+
+  return `${formattedValue} ${currenySymbol}`
+}

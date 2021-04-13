@@ -1,14 +1,15 @@
 import React from 'react'
-import type { CustomerDataSourceItem } from '../types/CustomerDataSourceItem'
+import type { CustomerDataSourceItemUnifiedCurrency } from '../types/CustomerDataSourceItem'
 import type { TableDataItem } from '../types/TableDataItem'
+import type { DataAggregationFields } from '../models/DataAggregationFields'
 import {
   mapMatrixesToAgGridCollection,
   aggregateCollectionToMatrixes,
 } from '../utils/data-processing'
 
 export const useAggregatedCustomersTableData = (
-  data: CustomerDataSourceItem[],
-  aggregateByKey: string
+  data: CustomerDataSourceItemUnifiedCurrency[],
+  aggregateByKey: keyof typeof DataAggregationFields
 ): TableDataItem[] => {
   return React.useMemo(() => {
     const matrixes = aggregateCollectionToMatrixes(data, aggregateByKey)
