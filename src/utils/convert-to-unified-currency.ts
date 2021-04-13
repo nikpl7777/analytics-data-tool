@@ -12,17 +12,21 @@ const applyExhangeRate = (
     return item as CustomerDataSourceItemUnifiedCurrency
   }
 
+  const exchangeRate = exchangeRates[item.Currency] || 0
+
   return {
     ...item,
     Currency: UNIFIED_DEFAULT_CURRENCY,
-    ARR: item.ARR * exchangeRates[item.Currency],
+    ARR: item.ARR * exchangeRate,
     details: item.details.map((detail) => ({
       ...detail,
-      ARR: detail.ARR * exchangeRates[item.Currency],
+      ARR: detail.ARR * exchangeRate,
     })),
   }
 }
 
 export const convertToUnifiedCurrency = (
   data: CustomerDataSourceItem[]
-): CustomerDataSourceItemUnifiedCurrency[] => data.map(applyExhangeRate)
+): CustomerDataSourceItemUnifiedCurrency[] => {
+  return data.map(applyExhangeRate)
+}
